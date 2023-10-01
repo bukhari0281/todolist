@@ -23,7 +23,7 @@ Route::get('/', [HomeController::class, 'index'] )->name('home');
 Route::prefix('admin')
     ->namespace('Admin')
     ->group(function() {
-        Route::get('/', [DashboardController::class, 'index'])
+        Route::get('/admin', [DashboardController::class, 'index'])
         ->name('dashboard');
     });
 
