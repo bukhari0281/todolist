@@ -9,6 +9,18 @@ class DashboardController extends Controller
 {
     public function index(Request $request)
     {
-        return view('pages.admin.dashboard');
+        return view('layouts.app');
+    }
+    public function operator(Request $request)
+    {
+        return view('pages.admin.operator');
+    }
+    public function keuangan(Request $request)
+    {
+        return view('pages.admin.keuangan');
+    }
+    public function marketing(Request $request)
+    {
+        return view('pages.admin.marketing');
     }
 }

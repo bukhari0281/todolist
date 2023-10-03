@@ -25,43 +25,36 @@
                 <div class="container-fluid px-4 px-lg-0">
                     <h1 class="fst-italic lh-1 mb-4">Sistem OBE Universitas Aisyiyah Yogyakarta</h1>
                     <p class="mb-5">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestias, impedit ducimus! Perferendis distinctio labore aliquam architecto qui recusandae enim nostrum consequuntur omnis dolorem, nobis libero nemo maiores sunt quos voluptatum?</p>
+                        @if($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach($errors->all() as $item)
+                                        <li>
+                                            {{ $item }}
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
 
-                    <!-- to get an API token!-->
-                    <form id="contactForm" data-sb-form-api-token="API_TOKEN">
-                        <!-- Email address input-->
+                        @endif
+                    <!-- login form-->
+                    <form action="" method="POST">
+
+                        @csrf
                         <div class="row input-group-newsletter">
-                            <div class="form-outline mb-4">
-                                <input class="form-control" id="username" type="username" placeholder="Enter username..." aria-label="Enter username..." data-sb-validations="required,username" />
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" value="{{ old('email') }}" name="email" class="form-control">
                             </div>
-                            <div class="form-outline mb-4">
-                                <input class="form-control" id="email" type="email" placeholder="Enter email address..." aria-label="Enter email address..." data-sb-validations="required,email" />
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" name="password" class="form-control">
                             </div>
-                            <div>
-                                <button class="btn btn-primary btn-lg btn-block mb-4"  type="submit">Sign In</button>
-
-                            </div>
-
-
-                        </div>
-                        <div class="invalid-feedback mt-2" data-sb-feedback="email:required">An email is required.</div>
-                        <div class="invalid-feedback mt-2" data-sb-feedback="email:email">Email is not valid.</div>
-                        <!-- Submit success message-->
-                        <!---->
-                        <!-- This is what your users will see when the form-->
-                        <!-- has successfully submitted-->
-                        <div class="d-none" id="submitSuccessMessage">
-                            <div class="text-center mb-3 mt-2">
-                                <div class="fw-bolder">Form submission successful!</div>
-                                To activate this form, sign up at
-                                <br />
-                                <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                            <div class="mb-3 mt-5 d-grid">
+                                <button name="submit" type="submit" class="btn btn-primary">Login</button>
                             </div>
                         </div>
-                        <!-- Submit error message-->
-                        <!---->
-                        <!-- This is what your users will see when there is-->
-                        <!-- an error submitting the form-->
-                        <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3 mt-2">Error sending message!</div></div>
+
                     </form>
                 </div>
             </div>

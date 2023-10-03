@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Auth\LoginRegisterController;
 use App\Http\Controllers\Admin\DashboardController;
 
 use Illuminate\Support\Facades\Route;
@@ -18,23 +17,29 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'] )->name('home');
+Route::middleware(['guest'])->group(function() {
+    Route::get('/', [HomeController::class, 'index'] )->name('login');
+    Route::post('/', [HomeController::class, 'login'] )->name('create-login');
+});
 
-Route::prefix('admin')
-    ->namespace('Admin')
-    ->group(function() {
-        Route::get('/admin', [DashboardController::class, 'index'])
-        ->name('dashboard');
+
+// admin
+Route::get('/home', function () {
+        return redirect('admin');
     });
 
-Route::controller(LoginRegisterController::class)->group(function() {
-    Route::get('/register', 'register')->name('register');
-    Route::post('/store', 'store')->name('store');
-    Route::get('/login', 'login')->name('login');
-    Route::post('/authenticate', 'authenticate')->name('authenticate');
-    Route::get('/dashboard', 'dashboard')->name('dashboard');
-    Route::post('/logout', 'logout')->name('logout');
-});
+Route::middleware(['auth'])->group(
+    function () {
+        Route::get('/admin', [DashboardController::class, 'index'] )->name('home');
+        Route::get('/admin/operator', [DashboardController::class, 'operator'] )->name('home');
+        Route::get('/admin/keuangan', [DashboardController::class, 'keuangan'] )->name('home');
+        Route::get('/admin/marketing', [DashboardController::class, 'marketing'] )->name('home');
+        Route::get('/logout', [HomeController::class, 'logout']);
+    }
+);
+
+
+
 
 Route::get('post', [PostController::class, 'index'])->name('users.index');
 Route::post('post', [PostController::class, 'store'])->name('users.store');
@@ -42,7 +47,3 @@ Route::get('posts/{post}', [PostController::class, 'show'])->name('users.show');
 Route::match(['put', 'patch'], 'users/{user}', [UserController::class, 'update'])->name('users.update');
 Route::delete('posts/{user}', [PostController::class, 'destroy'])->name('users.destroy');
 
-
-
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
