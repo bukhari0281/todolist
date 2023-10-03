@@ -31,9 +31,9 @@ Route::get('/home', function () {
 Route::middleware(['auth'])->group(
     function () {
         Route::get('/admin', [DashboardController::class, 'index'] )->name('home');
-        Route::get('/admin/operator', [DashboardController::class, 'operator'] )->name('home');
-        Route::get('/admin/keuangan', [DashboardController::class, 'keuangan'] )->name('home');
-        Route::get('/admin/marketing', [DashboardController::class, 'marketing'] )->name('home');
+        Route::get('/admin/operator', [DashboardController::class, 'operator'] )->middleware('userAkses:operator')->name('home');
+        Route::get('/admin/keuangan', [DashboardController::class, 'keuangan'] )->middleware('userAkses:keuangan')->name('home');
+        Route::get('/admin/marketing', [DashboardController::class, 'marketing'] )->middleware('userAkses:marketing')->name('home');
         Route::get('/logout', [HomeController::class, 'logout']);
     }
 );
