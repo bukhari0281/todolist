@@ -3,6 +3,7 @@
 http://127.0.0.1:8000/ = login
 
 menggunakan akun berikut dan yang dimasukkan email dan password. Terus akan diarahkan menuju halaman yang sesuai dengan rolenya.
+
 'email'=>'operator@gmail.com',
 'role'=>'operator',
 'password'=>bcrypt('123456')
