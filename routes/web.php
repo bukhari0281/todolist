@@ -25,7 +25,7 @@ Route::middleware(['guest'])->group(function() {
 
 // admin
 Route::get('/home', function () {
-        return redirect('admin');
+        return redirect('/admin');
     });
 
 Route::middleware(['auth'])->group(
