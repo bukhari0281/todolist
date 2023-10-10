@@ -47,3 +47,6 @@ Route::get('posts/{post}', [PostController::class, 'show'])->name('users.show');
 Route::match(['put', 'patch'], 'users/{user}', [UserController::class, 'update'])->name('users.update');
 Route::delete('posts/{user}', [PostController::class, 'destroy'])->name('users.destroy');
 
+Route::get('/login', function () {
+    return view('pages.login.login');
+});
