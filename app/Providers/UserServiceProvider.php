@@ -2,18 +2,20 @@
 
 namespace App\Providers;
 
+use App\Services\Implementation\UserServiceImplementation;
+use App\Services\UserService;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
 
 class UserServiceProvider extends ServiceProvider implements DeferrableProvider
 {
     public array $singletons = [
-        UserService::class => UserServiceProvider::class
+        UserService::class => UserServiceImplementation::class
     ];
 
-    public function provides() : array 
+    public function provides() : array
     {
-        return [UserServiceProvider::class];
+        return [UserService::class];
     }
 
     /**
@@ -21,7 +23,7 @@ class UserServiceProvider extends ServiceProvider implements DeferrableProvider
      */
     public function register(): void
     {
-        //
+
     }
 
     /**
