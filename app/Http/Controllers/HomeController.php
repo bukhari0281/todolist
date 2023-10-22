@@ -31,12 +31,10 @@ class HomeController extends Controller
         ];
 
         if(Auth::attempt($infologin)){
-            if(Auth::user()->role == 'operator'){
-                return redirect('admin/operator');
-            } elseif (Auth::user()->role == 'keuangan'){
-                return redirect('admin/keuangan');
-            } elseif (Auth::user()->role == 'marketing'){
-                return redirect('admin/marketing');
+            if(Auth::user()->role == 'ADMIN'){
+                return redirect('admin');
+            } elseif (Auth::user()->role == 'USER'){
+                return redirect('user');
             }
 
         }else{

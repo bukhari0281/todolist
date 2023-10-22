@@ -7,20 +7,12 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    public function index(Request $request)
+    public function admin(Request $request)
     {
-        return view('layouts.app');
+        return view('pages.admin.index');
     }
-    public function operator(Request $request)
+    public function user(Request $request)
     {
-        return view('pages.admin.operator');
-    }
-    public function keuangan(Request $request)
-    {
-        return view('pages.admin.keuangan');
-    }
-    public function marketing(Request $request)
-    {
-        return view('pages.admin.marketing');
+        return view('pages.user.index');
     }
 }
